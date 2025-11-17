@@ -5,28 +5,29 @@ const LoginPage = () => {
         <section className="flex flex-col md:flex-row justify-center items-center h-screen bg-gray-100 px-4 md:px-16 gap-12">
 
             {/* Overlapping Images Section */}
-            <div className="relative w-[400px] h-[400px] md:w-[450px] md:h-[450px]">
+            <div className="relative w-[500px] h-[500px] md:w-[600px] md:h-[600px]">
                 <img
                     src="./src/assets/friends1.jpg"
                     alt=""
-                    className="w-[180px] md:w-[200px] rounded-xl shadow-xl absolute top-4 left-6 -rotate-6"
+                    className="w-[340px] rounded-xl shadow-2xl absolute top-6 left-6 -rotate-6"
                 />
                 <img
                     src="./src/assets/friends2.jpg"
                     alt=""
-                    className="w-[180px] md:w-[200px] rounded-xl shadow-xl absolute top-7 left-28 rotate-4"
+                    className="w-[380px] rounded-xl shadow-2xl absolute top-12 left-32 rotate-4"
                 />
                 <img
                     src="./src/assets/friends3.jpg"
                     alt=""
-                    className="w-[180px] md:w-[200px] rounded-xl shadow-xl absolute top-28 left-12 rotate-8"
+                    className="w-[340px] rounded-xl shadow-2xl absolute top-48 left-16 rotate-8"
                 />
                 <img
                     src="./src/assets/friends4.jpg"
                     alt=""
-                    className="w-[180px] md:w-[200px] rounded-xl shadow-xl absolute top-20 left-36 -rotate-3"
+                    className="w-[320px] rounded-xl shadow-2xl absolute top-80 left-65 rotate-106"
                 />
             </div>
+
 
 
             {/* Login Form Section */}
