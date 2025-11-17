@@ -1,4 +1,6 @@
 import React from 'react'
+import TextInput from '../components/TextInput'
+import Button from '../components/Button'
 
 const SignUp = () => {
     return (
@@ -13,48 +15,12 @@ const SignUp = () => {
 
                 {/* Form */}
                 <form className="flex flex-col gap-4">
-                    <div className="flex flex-col">
-                        <label htmlFor="name" className="mb-1 text-gray-600 font-semibold">Your Name</label>
-                        <input
-                            type="text"
-                            id="name"
-                            placeholder="John Doe"
-                            className="px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]"
-                        />
-                    </div>
+                    <TextInput label="Your Name" name="name" placeholder="John Doe" />
+                    <TextInput label="Date Of Birth" type="date" name="DOB" />
+                    <TextInput label="Email" type="email" name="email" placeholder="example@email.com" />
+                    <TextInput label="Password" type="password" name="pass" placeholder="********" />
 
-                    <div className="flex flex-col">
-                        <label htmlFor="DOB" className="mb-1 text-gray-600 font-semibold">Date Of Birth</label>
-                        <input
-                            type="date"
-                            id="DOB"
-                            className="px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]"
-                        />
-                    </div>
-
-                    <div className="flex flex-col">
-                        <label htmlFor="email" className="mb-1 text-gray-600 font-semibold">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="example@email.com"
-                            className="px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]"
-                        />
-                    </div>
-
-                    <div className="flex flex-col">
-                        <label htmlFor="pass" className="mb-1 text-gray-600 font-semibold">Password</label>
-                        <input
-                            type="password"
-                            id="pass"
-                            placeholder="********"
-                            className="px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]"
-                        />
-                    </div>
-
-                    <button className="w-full bg-[#2d2d2d] text-white py-3 rounded-xl hover:bg-[#1f1f1f] transition font-semibold mt-2">
-                        Sign Up
-                    </button>
+                    <Button type="primary">Sign Up</Button>
                 </form>
 
                 {/* OR divider */}
@@ -67,9 +33,7 @@ const SignUp = () => {
                 {/* Sign In */}
                 <p className="text-center text-gray-500">
                     Already Have an Account?{' '}
-                    <button className="text-[#2d2d2d] font-semibold hover:underline">
-                        Sign In
-                    </button>
+                    <Button type="secondary">Sign In</Button>
                 </p>
             </div>
         </section>

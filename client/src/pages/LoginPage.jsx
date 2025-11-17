@@ -1,4 +1,6 @@
 import React from 'react'
+import TextInput from '../components/TextInput'
+import Button from '../components/Button'
 
 const LoginPage = () => {
     return (
@@ -35,19 +37,10 @@ const LoginPage = () => {
                 <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Vibely</h1>
 
                 <div className="flex flex-col gap-4">
-                    <input
-                        type="email"
-                        placeholder="Email Address..."
-                        className="px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        className="px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]"
-                    />
-                    <button className="w-full bg-[#2d2d2d] text-white py-3 rounded-xl hover:bg-[#1f1f1f] transition font-semibold">
-                        Log In
-                    </button>
+                    <TextInput label="Email Address" type="email" name="email" placeholder="Enter your email" />
+                    <TextInput label="Password" type="password" name="password" placeholder="Enter your password" />
+
+                    <Button type="primary">Log In</Button>
 
                     <div className="flex items-center gap-2 mt-2">
                         <hr className="flex-1 border-gray-300" />
@@ -55,16 +48,11 @@ const LoginPage = () => {
                         <hr className="flex-1 border-gray-300" />
                     </div>
 
-                    <button className="w-full text-[#2d2d2d] py-3 rounded-xl border border-[#2d2d2d] hover:bg-[#2d2d2d] hover:text-white transition font-semibold mt-2">
-                        Forgotten your Password
-                    </button>
+                    <Button type="secondary">Forgotten your Password</Button>
                 </div>
 
                 <p className="text-center text-gray-500 mt-6">
-                    Don't have an account?{' '}
-                    <button className="text-[#2d2d2d] font-semibold hover:underline">
-                        Sign Up
-                    </button>
+                    Don't have an account? <Button type="secondary">Sign Up</Button>
                 </p>
             </div>
         </section>
