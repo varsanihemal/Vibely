@@ -1,8 +1,12 @@
 import React from 'react'
 import TextInput from '../components/TextInput'
 import Button from '../components/Button'
+import { useNavigate } from 'react-router-dom'
+
 
 const SignUp = () => {
+    const navigate = useNavigate();
+
     return (
         <section className="flex justify-center items-center min-h-screen bg-gray-100 px-4 md:px-16">
             <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 w-full max-w-md">
@@ -33,7 +37,7 @@ const SignUp = () => {
                 {/* Sign In */}
                 <p className="text-center text-gray-500">
                     Already Have an Account?{' '}
-                    <Button type="secondary">Sign In</Button>
+                    <Button onClick={() => { navigate('/login') }} type="secondary">Sign In</Button >
                 </p>
             </div>
         </section>

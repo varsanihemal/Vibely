@@ -1,8 +1,12 @@
 import React from 'react'
 import TextInput from '../components/TextInput'
 import Button from '../components/Button'
+import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
+
+    const navigate = useNavigate();
+
     return (
         <section className="flex flex-col md:flex-row justify-center items-center h-screen bg-gray-100 px-4 md:px-16 gap-12">
 
@@ -52,7 +56,7 @@ const LoginPage = () => {
                 </div>
 
                 <p className="text-center text-gray-500 mt-6">
-                    Don't have an account? <Button type="secondary">Sign Up</Button>
+                    Don't have an account? <Button onClick={() => { navigate('/signup') }} type="secondary">Sign Up</Button>
                 </p>
             </div>
         </section>
