@@ -2,10 +2,22 @@ import React from 'react'
 import TextInput from '../components/TextInput'
 import Button from '../components/Button'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import axios from 'axios';
 
 
 const SignUp = () => {
     const navigate = useNavigate();
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post("http://localhost:5000/signup", {
+            name, email, password
+        }).then(result => console.log(result)).catch(err => console.log(err))
+    }
 
     return (
         <section className="flex justify-center items-center min-h-screen bg-gray-100 px-4 md:px-16">
@@ -18,11 +30,10 @@ const SignUp = () => {
                 </div>
 
                 {/* Form */}
-                <form className="flex flex-col gap-4">
-                    <TextInput label="Your Name" name="name" placeholder="John Doe" />
-                    <TextInput label="Date Of Birth" type="date" name="DOB" />
-                    <TextInput label="Email" type="email" name="email" placeholder="example@email.com" />
-                    <TextInput label="Password" type="password" name="pass" placeholder="********" />
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                    <TextInput label="Your Name" name="name" placeholder="John Doe" onChange={(e) => { setName(e.target.value) }} />
+                    <TextInput label="Email" type="email" name="email" placeholder="example@email.com" onChange={(e) => { setEmail(e.target.value) }} />
+                    <TextInput label="Password" type="password" name="pass" placeholder="********" onChange={(e) => { setPassword(e.target.value) }} />
 
                     <Button type="primary">Sign Up</Button>
                 </form>

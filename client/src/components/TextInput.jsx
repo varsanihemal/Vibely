@@ -1,10 +1,11 @@
 import React from 'react'
 
-const TextInput = ({ label, type = 'text', placeholder, name }) => {
+const TextInput = ({ label, type = 'text', placeholder, name, onChange }) => {
     return (
         <div className="flex flex-col">
             <label htmlFor={name} className="mb-1 text-gray-600 font-semibold">{label}</label>
             <input
+                onChange={onChange}
                 type={type}
                 id={name}
                 name={name}
