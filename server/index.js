@@ -1,30 +1,28 @@
 const express = require("express");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 const { connectToDB, getDB } = require("./db");
 
 const app = express();
-
-// Middlewares
 app.use(cors());
 app.use(express.json());
 
-// --- SIGNUP ROUTE ---
+// --- SIGNUP ---
 app.post("/signup", async (req, res) => {
   try {
     const db = getDB();
     const { name, email, password } = req.body;
 
-    // check if user exists
     const existingUser = await db.collection("users").findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: "Email already exists" });
-    }
+    if (existingUser)
+      return res.status(400).json({ error: "Email already exists" });
 
-    // insert new user
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const result = await db.collection("users").insertOne({
       name,
       email,
-      password, // (later we hash it)
+      password: hashedPassword,
       createdAt: new Date(),
     });
 
@@ -32,17 +30,37 @@ app.post("/signup", async (req, res) => {
       .status(201)
       .json({ message: "User registered", userId: result.insertedId });
   } catch (err) {
-    res.status(500).json({ message: "Server error", error: err });
+    console.error("Signup error:", err);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
-// Start server AFTER connecting to DB
+// --- LOGIN ---
+app.post("/login", async (req, res) => {
+  try {
+    const db = getDB();
+    const { email, password } = req.body;
+
+    const user = await db.collection("users").findOne({ email });
+    if (!user) return res.status(400).json({ error: "User does not exist" });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch)
+      return res.status(400).json({ error: "Password does not match" });
+
+    res
+      .status(200)
+      .json({ message: "Login successful", userId: user._id, name: user.name });
+  } catch (err) {
+    console.error("Login error:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// --- START SERVER ---
 async function startServer() {
   await connectToDB();
-
-  app.listen(5000, () => {
-    console.log("🚀 Server running on port 5000");
-  });
+  app.listen(5000, () => console.log("🚀 Server running on port 5000"));
 }
 
 startServer();

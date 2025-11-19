@@ -12,12 +12,20 @@ const SignUp = () => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post("http://localhost:5000/signup", {
-            name, email, password
-        }).then(result => console.log(result)).catch(err => console.log(err))
-    }
+        try {
+            const res = await axios.post("http://localhost:5000/signup", { name, email, password });
+            if (res.status === 201) {
+                alert("Signup successful! Please login.");
+                navigate("/login");
+            }
+        } catch (err) {
+            console.error(err);
+            alert(err.response?.data?.error || "Server error. Try again.");
+        }
+    };
+
 
     return (
         <section className="flex justify-center items-center min-h-screen bg-gray-100 px-4 md:px-16">
